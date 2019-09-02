@@ -1,0 +1,4 @@
+CREATE TABLE producto (idproducto  SERIAL NOT NULL, descripcion VARCHAR(255), precio FLOAT, stock INTEGER, idTipoProducto INTEGER, PRIMARY KEY (idproducto))
+CREATE TABLE tipoProducto (idTipoProducto  SERIAL NOT NULL, descripcion VARCHAR(255), PRIMARY KEY (idTipoProducto))
+CREATE TABLE persona (id  SERIAL NOT NULL, apellido VARCHAR(255), dni INTEGER, nombre VARCHAR(255), tipo_documento VARCHAR(255), PRIMARY KEY (id))
+ALTER TABLE producto ADD CONSTRAINT FK_producto_idTipoProducto FOREIGN KEY (idTipoProducto) REFERENCES tipoProducto (idTipoProducto)

@@ -1,0 +1,4 @@
+ALTER TABLE producto DROP CONSTRAINT FK_producto_idTipoProducto
+DROP TABLE producto CASCADE
+DROP TABLE tipoProducto CASCADE
+DROP TABLE persona CASCADE

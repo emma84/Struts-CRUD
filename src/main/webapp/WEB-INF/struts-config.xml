@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="personaForm" type="forms.PersonaForm" />
+		<form-bean name="productoForm" type="forms.ProductoForm" />
+	</form-beans>
+	<action-mappings>
+	<!-- 
+		path: ruta a mappear
+		type: clase encargada del mapeo
+		En caso de bindear(los inputs con los mismos names que concuerden con los atributos del formulario struts se autocompletan) contra un formulario de struts debemos especificar:
+			name: formulario struts
+			scope: puede ser request, session
+			input: de donde se van a sacar los datos para completar el formulario struts. 
+			comunmente bindeo formulario html con formulario struts
+		Forward: redireccionamiento de acuerdo a las palabras que devuelve la accion de struts
+			name: palabra devuelta
+			path: url de redireccionamiento (puede ser una accion o puede ser una jsp) 
+	-->
+		<action path="/persona/createUpdate"
+			type="actions.persona.CreateUpdateAction" name="personaForm" scope="request"
+			input="/persona/Persona.jsp">
+			<forward name="success" path="/persona/list.do" />
+			<forward name="failure" path="/persona/Persona.jsp" />
+		</action>
+		<action path="/persona/list" type="actions.persona.ListAction">
+			<forward name="success" path="/persona/Personas.jsp" />
+		</action>
+		<action path="/persona/delete" type="actions.persona.DeleteAction">
+			<forward name="success" path="/persona/list.do" />
+		</action>
+		<action path="/persona/new" type="actions.persona.NewAction">
+			<forward name="success" path="/persona/Persona.jsp" />
+		</action>
+		<action path="/producto/List" type="actions.producto.ListAction">
+			<forward name="success" path="/producto/ListProductos.jsp" />
+		</action>
+		<action path="/producto/delete" type="actions.producto.DeleteAction">
+			<forward name="success" path="/producto/ListProductos.jsp" />
+		</action>
+		<!-- Formulario (Submit Action form) -->
+		<action path="/producto/createUpdate" name="productoForm" input="/producto/Producto.jsp"
+			scope="request" type="actions.producto.CreateUpdateAction">
+			<forward name="success" path="/producto/ListProductos.jsp" />
+			<forward name="failure" path="/producto/Producto.jsp" />
+		</action>
+		<!-- Cuando apreto en el boton Nuevo o Editar -->
+		<action path="/producto/new"
+			type="actions.producto.NewAction">
+			<forward name="success" path="/producto/Producto.jsp" />
+		</action>
+	</action-mappings>
+	<controller
+		processorClass="org.apache.struts.action.RequestProcessor" />
+	<message-resources parameter="ApplicationResource" />
+
+	<plug-in
+		className="org.apache.struts.validator.ValidatorPlugIn">
+
+		<set-property
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"
+			property="pathnames" />
+
+	</plug-in>
+</struts-config>
