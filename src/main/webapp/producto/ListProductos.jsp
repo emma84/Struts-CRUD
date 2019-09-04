@@ -1,61 +1,86 @@
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<script src="../js/bootstrap.min.js"></script>
 <title>Listado de Productos</title>
 </head>
 <body>
-	<h1>Listado de Productos</h1>
-	<a style="text-decoration: none;" href="/producto/new.do">
-		<button style="cursor: pointer;" class="button-delete">Nuevo
-			Producto</button>
-	</a>
-	<table
-		style="border-collapse: collapse; font-family: arial, sans-serif;">
-		<tr style="border: 1px solid; padding: 8px;">
-			<td style="border: 1px solid; padding: 8px; background-color: grey;">Indice</td>
-			<td style="border: 1px solid; padding: 8px; background-color: grey">Descripcion</td>
-			<td style="border: 1px solid; padding: 8px; background-color: grey">Precio</td>
-			<td style="border: 1px solid; padding: 8px; background-color: grey">Stock</td>
-			<td style="border: 1px solid; padding: 8px; background-color: grey">Tipo
-				de Producto</td>
-			<br>
-			<td style="border: 1px solid; padding: 15px; background-color: grey"><strong>Acciones</strong></td>
-			<br>
-		</tr>
-		<logic:iterate id="producto" name="productos">
-			<tr style="border: 1px solid">
-				<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-						name="producto" property="idProducto" /></td>
-				<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-						name="producto" property="descripcion" /></td>
-				<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-						name="producto" property="precio" /></td>
-				<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-						name="producto" property="stock" /></td>
-				<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-						name="producto" property="tipoProducto.descripcion" /></td>
+	<div class="container">
+		<h1 class="text-center">Listado de Productos</h1>
+		<div class="row mt-3 mb-3">
+			<a style="text-decoration: none;" href="/producto/new.do">
+				<button class="btn btn-primary" style="cursor: pointer;"
+					class="button-delete">
+					<i class="fa fa-plus"></i><b> Nuevo Producto</b>
+				</button>
+			</a>
+		</div>
 
-				<td style="border: 1px solid; padding: 10px; text-align: center;">
-					<a style="text-decoration: none;"
-					href="delete.do?idProducto=<bean:write name="producto" property="idProducto" />">
-						<button
-							style="cursor: pointer; text-decoration: none; color: red;"
-							class="button-delete">Delete</button>
-				</a> <a style="text-decoration: none;"
-					href="/producto/new.do?idProducto=<bean:write name="producto" property="idProducto" />">
-						<button
-							style="cursor: pointer; text-decoration: none; color: blue;"
-							class="button-delete">Edit</button>
-				</a>
-				</td>
-			</tr>
-		</logic:iterate>
-	</table>
+		<div class="row">
+			<table class="table table-striped"
+				style="border-collapse: collapse; font-family: arial, sans-serif;">
+				<tr style="border: 1px solid black; background-color: grey">
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><b>Indice</b></td>
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><b>Descripcion</b></td>
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><b>Precio</b></td>
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><b>Stock</b></td>
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><b>Tipo de Producto</b></td>
+					<td style="border: 1px solid black; padding: 8px; color: white;"
+						class="text-center"><strong>Acciones</strong></td>
+				</tr>
+				<logic:iterate id="producto" name="productos">
+					<tr style="border: 1px solid">
+						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
+								name="producto" property="idProducto" /></td>
+						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
+								name="producto" property="descripcion" /></td>
+						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
+								name="producto" property="precio" /></td>
+						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
+								name="producto" property="stock" /></td>
+						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
+								name="producto" property="tipoProducto.descripcion" /></td>
+
+						<td style="border: 1px solid; padding: 10px; text-align: center;">
+							<a class="mr-3" style="text-decoration: none;"
+							href="/producto/new.do?idProducto=<bean:write name="producto" property="idProducto" />">
+								<i class="fa fa-pencil" style="font-size: 25px; color: #FFA500"></i>
+						</a> <a style="text-decoration: none;"
+							href="delete.do?idProducto=<bean:write name="producto" property="idProducto" />">
+								<i class="fa fa-trash" style="font-size: 25px; color: red"></i>
+						</a>
+						</td>
+					</tr>
+				</logic:iterate>
+			</table>
+		</div>
+		<div class="row mt-3 mb-3">
+			<a style="text-decoration: none;" href="/Index.jsp">
+				<button class="btn btn-success" style="cursor: pointer; width:165.81px;"
+					class="button-delete">
+					<i class="fa fa-arrow-circle-left" style="color: white"></i><b>
+						Volver</b>
+				</button>
+			</a>
+		</div>
+	</div>
 </body>
 </html>
