@@ -1,11 +1,9 @@
 package daos;
 
-import java.util.List;
 
+import UtilDAO.AbstractDAO;
 import models.TipoProducto;
 
-public interface TipoProductoDAO {
-	public TipoProducto findById(Integer idTipoProducto);
+public class TipoProductoDAO extends AbstractDAO<TipoProducto, Integer> {
 
-	public List<TipoProducto> findAll();
 }

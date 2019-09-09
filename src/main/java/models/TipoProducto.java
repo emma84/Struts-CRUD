@@ -21,7 +21,7 @@ public class TipoProducto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idTipoProducto")
-	private int idTipoProducto;
+	private Integer idTipoProducto;
 	@Column(name = "descripcion")
 	private String descripcion;
 
@@ -29,17 +29,17 @@ public class TipoProducto implements Serializable {
 		super();
 	}
 
-	public TipoProducto(int idTipoProducto, String descripcion) {
+	public TipoProducto(Integer idTipoProducto, String descripcion) {
 		super();
 		this.idTipoProducto = idTipoProducto;
 		this.descripcion = descripcion;
 	}
 
-	public int getIdTipoProducto() {
+	public Integer getIdTipoProducto() {
 		return idTipoProducto;
 	}
 
-	public void setIdTipoProducto(int idTipoProducto) {
+	public void setIdTipoProducto(Integer idTipoProducto) {
 		this.idTipoProducto = idTipoProducto;
 	}
 

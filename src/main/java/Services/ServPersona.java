@@ -3,19 +3,19 @@ package Services;
 import java.util.List;
 
 import daos.PersonaDAO;
-import daos.PersonaDAOImpl;
 import forms.PersonaForm;
 import models.Persona;
 
 public class ServPersona {
-	private final PersonaDAO personaDAO = new PersonaDAOImpl();
+	private final PersonaDAO personaDAO = new PersonaDAO();
 
 	public List<Persona> findAll() {
 		return personaDAO.findAll();
 	}
 
 	public void delete(Integer idPersona) {
-		personaDAO.delete(idPersona);
+		Persona persona = personaDAO.findById(idPersona);
+		personaDAO.delete(persona);
 	}
 
 	public void create(PersonaForm form) {

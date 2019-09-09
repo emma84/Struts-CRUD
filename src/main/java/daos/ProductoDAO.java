@@ -1,17 +1,8 @@
 package daos;
 
-import java.util.List;
+import UtilDAO.AbstractDAO;
 import models.Producto;
 
-public interface ProductoDAO {
+public class ProductoDAO extends AbstractDAO<Producto, Long> {
 
-	public List<Producto> findAll();
-
-	public void delete(Long idProducto);
-
-	public Producto findById(Long idProducto);
-
-	public void save(Producto producto);
-
-	public void update(Producto producto);
 }

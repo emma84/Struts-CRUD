@@ -3,19 +3,19 @@ package Services;
 import java.util.List;
 
 import daos.ProductoDAO;
-import daos.ProductoDAOImpl;
 import forms.ProductoForm;
 import models.Producto;
 
 public class ServProducto {
-	private final ProductoDAO productoDAO = new ProductoDAOImpl();
+	private final ProductoDAO productoDAO = new ProductoDAO();
 
 	public List<Producto> findAll() {
 		return productoDAO.findAll();
 	}
 
 	public void delete(Long idProducto) {
-		productoDAO.delete(idProducto);
+		Producto producto = productoDAO.findById(idProducto);
+		productoDAO.delete(producto);
 	}
 
 	public void create(ProductoForm pForm)

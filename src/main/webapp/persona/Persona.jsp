@@ -73,7 +73,7 @@
 				<div class="col-6">
 					<div class="form-group">
 						<a style="text-decoration: none; cursor: pointer; width: 100%"
-							href="/producto/List.do" class="btn btn-success btn-lg btn-block">
+							href="/persona/list.do" class="btn btn-success btn-lg btn-block">
 							<i class="fa fa-arrow-circle-left" style="color: white"></i> <b>Volver</b>
 						</a>
 					</div>
