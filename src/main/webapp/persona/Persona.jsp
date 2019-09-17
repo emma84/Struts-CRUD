@@ -16,25 +16,27 @@
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous">
 <script src="../js/bootstrap.min.js"></script>
-<title><logic:present name="update">
+<title><logic:equal name="personaForm" property="created" value="false">
 				Actualizar Persona
-			</logic:present> <logic:present name="create">
+			</logic:equal> <logic:equal name="personaForm" property="created" value="true">
 				Crear Nueva Persona
-			</logic:present></title>
+			</logic:equal></title>
 </head>
 <body>
-	<logic:present name="update">
+	<logic:equal name="personaForm" property="created" value="false">
 		<h2 class="text-center">Actualizar Persona</h2>
-	</logic:present>
-	<logic:present name="create">
+	</logic:equal>
+	<logic:equal name="personaForm" property="created" value="true">
 		<h2 class="text-center">Crear Nueva Persona</h2>
-	</logic:present>
+	</logic:equal>
 
 	<div style="width: 300px; margin: 0 auto; margin-top: 25px">
 		<html:form action="persona/createUpdate">
 			<div class="form-group">
 				<html:text property="idPersona" name="personaForm"
 					style="display:none" />
+					<html:text property="created" name="personaForm"
+				style="display:none" />
 				<div style="color: red">
 					<html:errors property="nombre" />
 				</div>
@@ -55,11 +57,16 @@
 
 			<div class="form-group">
 				<div style="color: red">
-					<html:errors property="tipoDocumento" />
+					<html:errors property="descripcion" />
 				</div>
-				<label id="tipoDocumento">Tipo Documento:</label>
-				<html:text styleClass="form-control" property="tipoDocumento"
-					name="personaForm" />
+				<label>Tipo Documento:</label>
+				<html:select styleClass="form-control" name="personaForm"
+					property="tipoDocumento">
+					<html:option value="0">Seleccione Tipo de Documento</html:option>
+					<html:optionsCollection name="personaForm"
+						property="listadoDocumentos" label="descripcion"
+						value="id" />
+				</html:select>
 			</div>
 			<div class="form-group">
 				<div style="color: red">
@@ -79,15 +86,15 @@
 					</div>
 				</div>
 				<div class="col-6">
-					<logic:present name="update">
+					<logic:equal name="personaForm" property="created" value="false">
 						<html:submit styleClass="btn btn-primary btn-lg btn-block"
 							value="Actualizar" />
-					</logic:present>
+					</logic:equal>
 
-					<logic:present name="create">
+					<logic:equal name="personaForm" property="created" value="true">
 						<html:submit styleClass="btn btn-primary btn-lg btn-block"
 							value="Crear" />
-					</logic:present>
+					</logic:equal>
 				</div>
 			</div>
 		</html:form>

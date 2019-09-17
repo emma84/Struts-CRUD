@@ -17,6 +17,8 @@
 				value="postgres" />
 			<property name="javax.persistence.jdbc.password"
 				value="Noah2016" />
+			<property name="eclipselink.ddl-generation"
+				value="create-tables" />
 		</properties>
 	</persistence-unit>
 </persistence>

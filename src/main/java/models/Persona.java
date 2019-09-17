@@ -1,39 +1,34 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="persona")
-public class Persona {
+@Table(name = "persona")
+public class Persona implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer idPersona;
-	@Column(name="nombre")
+	@Column(name = "nombre")
 	private String nombre;
-	@Column(name="apellido")
+	@Column(name = "apellido")
 	private String apellido;
-	@Column(name="dni")
+	@Column(name = "dni")
 	private Integer dni;
-	@Column(name="tipo_documento")
-	private String tipoDni;
 	
+	@OneToOne
+	@JoinColumn(name = "tipo_documento")
+	private TipoDocumento tipoDni;
 
-	public Persona() {
-	}
-
-	public Persona(Integer idPersona, String nombre, String apellido, Integer dni, String tipoDni) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.dni = dni;
-		this.tipoDni = tipoDni;
-	}
-	
 	public Integer getIdPersona() {
 		return idPersona;
 	}
@@ -66,12 +61,25 @@ public class Persona {
 		this.dni = dni;
 	}
 
-	public String getTipoDni() {
+	public TipoDocumento getTipoDni() {
 		return tipoDni;
 	}
 
-	public void setTipoDni(String tipoDni) {
+	public void setTipoDni(TipoDocumento tipoDni) {
 		this.tipoDni = tipoDni;
 	}
-	
+
+	public Persona(Integer idPersona, String nombre, String apellido, Integer dni, TipoDocumento tipoDni) {
+		super();
+		this.idPersona = idPersona;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.tipoDni = tipoDni;
+	}
+
+	public Persona() {
+		super();
+	}
+
 }

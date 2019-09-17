@@ -21,17 +21,16 @@ public class CreateUpdateAction extends Action {
 
 		try {
 			ServProducto servProducto = new ServProducto();
-
 			if (pForm.getIdProducto() != null && pForm.getIdProducto() > 0)
 				servProducto.update(pForm);
-			else
+			else {
 				servProducto.create(pForm);
-
+			}
 			request.setAttribute("productos", servProducto.findAll());
 			return mapping.findForward("success");
 		} catch (Exception e) {
 			e.printStackTrace();
-			pForm.setListadoProductos(servTipoProducto.listadoProductos());
+			pForm.setListadoTipoProductos(servTipoProducto.findAll());
 			request.setAttribute("productoForm", pForm);
 			return mapping.findForward("failure");
 		}

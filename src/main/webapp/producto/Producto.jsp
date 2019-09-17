@@ -16,26 +16,30 @@
 	crossorigin="anonymous">
 <script src="../js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><logic:present name="update">
+<title><logic:equal name="productoForm" property="created"
+		value="false">
 				Actualizar Producto
-			</logic:present> <logic:present name="create">
+			</logic:equal> <logic:equal name="productoForm" property="created" value="true">
 				Crear Nuevo Producto
-			</logic:present></title>
+			</logic:equal></title>
 </head>
 <body>
 
-	<logic:present name="update">
+	<logic:equal name="productoForm" property="created"
+		value="false">
 		<h2 class="text-center">Actualizar Producto</h2>
-	</logic:present>
-	<logic:present name="create">
+	</logic:equal>
+	<logic:equal name="productoForm" property="created" value="true">
 		<h2 class="text-center">Crear Nuevo Producto</h2>
-	</logic:present>
+	</logic:equal>
 
 	<div style="width: 300px; margin: 0 auto; margin-top: 25px">
 		<html:form action="producto/createUpdate.do">
+			<html:text property="idProducto" name="productoForm"
+				style="display:none" />
+			<html:text property="created" name="productoForm"
+				style="display:none" />
 			<div class="form-group">
-				<html:text property="idProducto" name="productoForm"
-					style="display:none" />
 				<div style="color: red">
 					<html:errors property="descripcion" />
 				</div>
@@ -71,7 +75,7 @@
 					property="idTipoProducto">
 					<html:option value="0">Seleccione Tipo de Producto</html:option>
 					<html:optionsCollection name="productoForm"
-						property="listadoProductos" label="descripcion"
+						property="listadoTipoProductos" label="descripcion"
 						value="idTipoProducto" />
 				</html:select>
 			</div>
@@ -85,14 +89,14 @@
 					</div>
 				</div>
 				<div class="col-6">
-					<logic:present name="update" >
+					<logic:equal name="productoForm" property="created" value="false">
 						<html:submit value="Actualizar"
 							styleClass="btn btn-primary btn-lg btn-block" />
-					</logic:present>
-					<logic:present name="create">
+					</logic:equal>
+					<logic:equal name="productoForm" property="created" value="true">
 						<html:submit styleClass="btn btn-primary btn-lg btn-block"
 							value="Crear" />
-					</logic:present>
+					</logic:equal>
 				</div>
 			</div>
 		</html:form>

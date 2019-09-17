@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,17 +15,18 @@
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous">
 <script src="../js/bootstrap.min.js"></script>
-<title>Listado de Personas</title>
+<title>Listado de Tipos de Productos</title>
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-center">Listado de Personas</h1>
+		<h1 class="text-center">Listado de Tipos de Productos</h1>
 		<div class="row mt-3 mb-3">
-			<a style="text-decoration: none;" href="/persona/new.do"><button
-					class="btn btn-primary" style="cursor: pointer;"
-					class="button-create">
-					<i class="fa fa-plus"></i><b> Nueva Persona</b>
-				</button> </a>
+			<a style="text-decoration: none;" href="/tipoProducto/new.do">
+				<button class="btn btn-primary" style="cursor: pointer;"
+					class="button-delete">
+					<i class="fa fa-plus"></i><b> Nuevo Tipo de Producto</b>
+				</button>
+			</a>
 		</div>
 
 		<div class="row">
@@ -34,35 +36,23 @@
 					<td style="border: 1px solid black; padding: 8px; color: white;"
 						class="text-center"><b>Indice</b></td>
 					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Nombre</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Apellido</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Tipo Documento</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Numero Documento</b></td>
+						class="text-center"><b>Descripcion</b></td>
 					<td style="border: 1px solid black; padding: 8px; color: white;"
 						class="text-center"><strong>Acciones</strong></td>
 				</tr>
-				<logic:iterate id="persona" name="personas">
+				<logic:iterate id="tipoProducto" name="tiposProductos">
 					<tr style="border: 1px solid">
 						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="idPersona" /></td>
+								name="tipoProducto" property="idTipoProducto" /></td>
 						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="nombre" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="apellido" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="tipoDni.descripcion" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="dni" /></td>
+								name="tipoProducto" property="descripcion" /></td>
 
 						<td style="border: 1px solid; padding: 10px; text-align: center;">
 							<a class="mr-3" style="text-decoration: none;"
-							href="/persona/new.do?idPersona=<bean:write name="persona" property="idPersona" />">
+							href="/tipoProducto/new.do?id=<bean:write name="tipoProducto" property="idTipoProducto" />">
 								<i class="fa fa-pencil" style="font-size: 25px; color: #FFA500"></i>
 						</a> <a style="text-decoration: none;"
-							href="delete.do?idPersona=<bean:write name="persona" property="idPersona" />">
+							href="delete.do?id=<bean:write name="tipoProducto" property="idTipoProducto" />">
 								<i class="fa fa-trash" style="font-size: 25px; color: red"></i>
 						</a>
 						</td>

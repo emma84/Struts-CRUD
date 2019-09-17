@@ -3,10 +3,10 @@
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="ISO-8859-1">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,19 +14,18 @@
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous">
 <script src="../js/bootstrap.min.js"></script>
-<title>Listado de Personas</title>
+<title>Tipos de Documentos</title>
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-center">Listado de Personas</h1>
+		<h1 class="text-center">Listado de Tipos de Documentos</h1>
 		<div class="row mt-3 mb-3">
-			<a style="text-decoration: none;" href="/persona/new.do"><button
+			<a style="text-decoration: none;" href="/tipoDocumento/new.do"><button
 					class="btn btn-primary" style="cursor: pointer;"
 					class="button-create">
-					<i class="fa fa-plus"></i><b> Nueva Persona</b>
+					<i class="fa fa-plus"></i><b> Nuevo Tipo de Documento</b>
 				</button> </a>
 		</div>
-
 		<div class="row">
 			<table class="table table-striped"
 				style="border-collapse: collapse; font-family: arial, sans-serif;">
@@ -34,35 +33,23 @@
 					<td style="border: 1px solid black; padding: 8px; color: white;"
 						class="text-center"><b>Indice</b></td>
 					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Nombre</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Apellido</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Tipo Documento</b></td>
-					<td style="border: 1px solid black; padding: 8px; color: white;"
-						class="text-center"><b>Numero Documento</b></td>
+						class="text-center"><b>Descripcion</b></td>
 					<td style="border: 1px solid black; padding: 8px; color: white;"
 						class="text-center"><strong>Acciones</strong></td>
 				</tr>
-				<logic:iterate id="persona" name="personas">
+				<logic:iterate id="tipoDocumento" name="tiposDocumentos">
 					<tr style="border: 1px solid">
 						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="idPersona" /></td>
+								name="tipoDocumento" property="id" /></td>
 						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="nombre" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="apellido" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="tipoDni.descripcion" /></td>
-						<td style="border: 1px solid; padding: 10px; text-align: center;"><bean:write
-								name="persona" property="dni" /></td>
+								name="tipoDocumento" property="descripcion" /></td>
 
 						<td style="border: 1px solid; padding: 10px; text-align: center;">
 							<a class="mr-3" style="text-decoration: none;"
-							href="/persona/new.do?idPersona=<bean:write name="persona" property="idPersona" />">
+							href="/tipoDocumento/new.do?id=<bean:write name="tipoDocumento" property="id" />">
 								<i class="fa fa-pencil" style="font-size: 25px; color: #FFA500"></i>
 						</a> <a style="text-decoration: none;"
-							href="delete.do?idPersona=<bean:write name="persona" property="idPersona" />">
+							href="delete.do?id=<bean:write name="tipoDocumento" property="id" />">
 								<i class="fa fa-trash" style="font-size: 25px; color: red"></i>
 						</a>
 						</td>

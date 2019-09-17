@@ -1,19 +1,26 @@
 package forms;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import javax.servlet.http.HttpServletRequest;
+import Services.ServTipoDocumento;
+import models.TipoDocumento;
 
 public class PersonaForm extends ActionForm {
 	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String apellido;
-	private String tipoDocumento;
+	private Integer tipoDocumento;
 	private Integer numDocumento;
 	private Integer idPersona;
+	private List<TipoDocumento> listadoDocumentos;
+	public boolean created;
 
 	/**
 	 * This is the action called from the Struts framework.
@@ -24,22 +31,27 @@ public class PersonaForm extends ActionForm {
 	 */
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 		ActionErrors errors = new ActionErrors();
-		
-		
-		
+
 		if (nombre == null || nombre.length() < 1) {
 			errors.add("nombre", new ActionMessage("error.nombre.required"));
 		}
 		if (apellido == null || apellido.length() < 1) {
 			errors.add("apellido", new ActionMessage("error.apellido.required"));
 		}
-		if (tipoDocumento == null || tipoDocumento.length() < 1) {
+		if (tipoDocumento == null || tipoDocumento <1) {
 			errors.add("tipoDocumento", new ActionMessage("error.tipoDocumento.required"));
 		}
 		if (numDocumento == null || numDocumento < 1) {
 			errors.add("numDocumento", new ActionMessage("error.numDocumento.required"));
 		}
+		ServTipoDocumento servTipoDocumento = new ServTipoDocumento();
+		setListadoDocumentos(servTipoDocumento.findAll());
+		setCreated(created);
 		return errors;
+	}
+
+	public void setListadoDocumentos(List<TipoDocumento> listadoDocumentos) {
+		this.listadoDocumentos = listadoDocumentos;
 	}
 
 	public Integer getIdPersona() {
@@ -66,11 +78,11 @@ public class PersonaForm extends ActionForm {
 		this.apellido = apellido;
 	}
 
-	public String getTipoDocumento() {
+	public Integer getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(String tipoDocumento) {
+	public void setTipoDocumento(Integer tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 
@@ -81,5 +93,18 @@ public class PersonaForm extends ActionForm {
 	public void setNumDocumento(Integer numDocumento) {
 		this.numDocumento = numDocumento;
 	}
+
+	public List<TipoDocumento> getListadoDocumentos() {
+		return listadoDocumentos;
+	}
+
+	public boolean isCreated() {
+		return created;
+	}
+
+	public void setCreated(boolean created) {
+		this.created = created;
+	}
+	
 
 }

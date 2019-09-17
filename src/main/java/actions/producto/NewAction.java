@@ -25,7 +25,7 @@ public class NewAction extends Action {
 		// Buscar todos los productos
 		ServProducto servProducto = new ServProducto();
 		ServTipoProducto servTipoProducto = new ServTipoProducto();
-		pForm.setListadoProductos(servTipoProducto.listadoProductos());
+		pForm.setListadoTipoProductos(servTipoProducto.findAll());
 		if (request.getParameter("idProducto") != null) {
 
 			// ServTipoProducto servTipoProducto = new ServTipoProducto();
@@ -37,9 +37,9 @@ public class NewAction extends Action {
 			pForm.setPrecio(producto.getPrecio());
 			pForm.setStock(producto.getStock());
 			pForm.setIdTipoProducto(producto.getTipoProducto().getIdTipoProducto());
-			request.setAttribute("update", true);
+			pForm.setCreated(false);
 		} else {
-			request.setAttribute("create", true);
+			pForm.setCreated(true);
 		}
 		request.setAttribute("productoForm", pForm);
 		return mapping.findForward(SUCCESS);

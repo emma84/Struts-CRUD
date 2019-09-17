@@ -45,11 +45,12 @@ public abstract class AbstractDAO <T, K> {
 		}
 	}
 	
-	public void delete(T entity) {
+	public void delete(K primaryKey) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("struts-jpa");
 		EntityManager em = factory.createEntityManager();
 		try {
 			em.getTransaction().begin();
+			T entity = em.find(entityClass, primaryKey);
 			em.remove(entity);
 			em.getTransaction().commit();
 		} finally {
@@ -85,4 +86,6 @@ public abstract class AbstractDAO <T, K> {
 		}
 		return t;
 	}
+	
+	
 }

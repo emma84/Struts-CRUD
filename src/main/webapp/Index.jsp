@@ -33,6 +33,23 @@
 					</button></a>
 			</div>
 		</div>
+		<div class="row mt-5">
+			<div class="col-6">
+				<a href="tipoDocumento/list.do" style="text-decoration: none"><button
+						style="cursor: pointer; height: 150px"
+						class="btn btn-primary btn-lg btn-block">
+						<span style="font-size: 25px"><b>ENTRAR A TIPOS DE
+								DOCUMENTOS</b></span>
+					</button></a>
+			</div>
+			<div class="col-6">
+				<a href="tipoProducto/list.do" style="text-decoration: none"><button
+						style="cursor: pointer; height: 150px"
+						class="btn btn-secondary btn-lg btn-block">
+						<span style="font-size: 25px"><b>ENTRAR A TIPO PRODUCTO</b></span>
+					</button></a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

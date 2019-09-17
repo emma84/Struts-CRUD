@@ -14,8 +14,7 @@ public class ServProducto {
 	}
 
 	public void delete(Long idProducto) {
-		Producto producto = productoDAO.findById(idProducto);
-		productoDAO.delete(producto);
+		productoDAO.delete(idProducto);
 	}
 
 	public void create(ProductoForm pForm)

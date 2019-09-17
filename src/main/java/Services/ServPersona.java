@@ -14,15 +14,15 @@ public class ServPersona {
 	}
 
 	public void delete(Integer idPersona) {
-		Persona persona = personaDAO.findById(idPersona);
-		personaDAO.delete(persona);
+		personaDAO.delete(idPersona);
 	}
 
 	public void create(PersonaForm form) {
 		Persona persona = new Persona();
+		ServTipoDocumento servTipoDocumento = new ServTipoDocumento();
 		persona.setNombre(form.getNombre());
 		persona.setApellido(form.getApellido());
-		persona.setTipoDni(form.getTipoDocumento());
+		persona.setTipoDni(servTipoDocumento.getTipoDocumento(form.getTipoDocumento()));
 		persona.setDni(form.getNumDocumento());
 		personaDAO.save(persona);
 	}
@@ -32,11 +32,12 @@ public class ServPersona {
 	}
 
 	public void update(PersonaForm personaForm) {
+		ServTipoDocumento servTipoDocumento = new ServTipoDocumento();
 		Persona persona = new Persona();
 		persona.setIdPersona(personaForm.getIdPersona());
 		persona.setNombre(personaForm.getNombre());
 		persona.setApellido(personaForm.getApellido());
-		persona.setTipoDni(personaForm.getTipoDocumento());
+		persona.setTipoDni(servTipoDocumento.getTipoDocumento(personaForm.getTipoDocumento()));
 		persona.setDni(personaForm.getNumDocumento());
 		personaDAO.update(persona);
 	}

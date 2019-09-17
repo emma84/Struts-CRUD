@@ -1,4 +1,4 @@
-package actions.persona;
+package actions.tipoProducto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,28 +8,28 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import Services.ServPersona;
-import Services.ServTipoDocumento;
-import forms.PersonaForm;
+import Services.ServTipoProducto;
+import forms.TipoProductoForm;
+import models.TipoProducto;
 
 public class CreateUpdateAction extends Action {
-	@Override
+
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
-		ServTipoDocumento servTipoDocumento = new ServTipoDocumento();
-		PersonaForm pForm = (PersonaForm) form;
+		TipoProductoForm tpForm = (TipoProductoForm) form;
+		ServTipoProducto servTipoProducto = new ServTipoProducto();
 		try {
-			ServPersona servPersona = new ServPersona();
-			if (pForm.getIdPersona() != null) {
-				servPersona.update(pForm);
+			if (tpForm.getIdTipoProducto() != null && tpForm.getIdTipoProducto() > 0) {
+				servTipoProducto.update(tpForm);
 			} else {
-				servPersona.create(pForm);
+				servTipoProducto.create(tpForm);
 			}
+			request.setAttribute("tiposProductos", servTipoProducto.findAll());
 			return mapping.findForward("success");
 		} catch (Exception e) {
 			e.printStackTrace();
-			pForm.setListadoDocumentos(servTipoDocumento.findAll());
-			request.setAttribute("personaForm", pForm);
+			tpForm.setListadoProductos(servTipoProducto.findAll());
+			request.setAttribute("tipoProductoForm", tpForm);
 			return mapping.findForward("failure");
 		}
 	}

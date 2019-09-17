@@ -19,35 +19,36 @@ public class ProductoForm extends ActionForm {
 	private double precio;
 	private int stock;
 	private int idTipoProducto;
-	private List<TipoProducto> listadoProductos;
+	private List<TipoProducto> listadoTipoProductos;
+	private boolean created;
 
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 		ActionErrors errors = new ActionErrors();
 		if (descripcion == null || descripcion.length() < 1) {
 			errors.add("descripcion", new ActionMessage("error.descripcion.required"));
 		}
-		if (precio < 0) {
+		if ((String.valueOf(precio).isEmpty()) || precio <= 0) {
 			errors.add("precio", new ActionMessage("error.precio.required"));
 		}
-		if (stock < 0) {
+		if ((String.valueOf(stock).isEmpty()) || stock < 0) {
 			errors.add("stock", new ActionMessage("error.stock.required"));
 		}
 		if (idTipoProducto == -1 || idTipoProducto == 0) {
 			errors.add("idTipoProducto", new ActionMessage("error.idTipoProducto.required"));
 		}
-		
+
 		ServTipoProducto servTipoProducto = new ServTipoProducto();
-		setListadoProductos(servTipoProducto.listadoProductos());
-		
+		setListadoTipoProductos(servTipoProducto.findAll());
+		setCreated(created);
 		return errors;
 	}
 
-	public List<TipoProducto> getListadoProductos() {
-		return listadoProductos;
+	public List<TipoProducto> getListadoTipoProductos() {
+		return listadoTipoProductos;
 	}
 
-	public void setListadoProductos(List<TipoProducto> listadoProductos) {
-		this.listadoProductos = listadoProductos;
+	public void setListadoTipoProductos(List<TipoProducto> listadoTipoProductos) {
+		this.listadoTipoProductos = listadoTipoProductos;
 	}
 
 	public Long getIdProducto() {
@@ -94,4 +95,13 @@ public class ProductoForm extends ActionForm {
 		return serialVersionUID;
 	}
 
+	public boolean isCreated() {
+		return created;
+	}
+
+	public void setCreated(boolean created) {
+		this.created = created;
+	}
+
+	
 }

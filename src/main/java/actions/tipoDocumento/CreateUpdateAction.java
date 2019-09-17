@@ -1,4 +1,4 @@
-package actions.persona;
+package actions.tipoDocumento;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,29 +8,31 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import Services.ServPersona;
 import Services.ServTipoDocumento;
-import forms.PersonaForm;
+import forms.TipoDocumentoForm;
 
 public class CreateUpdateAction extends Action {
-	@Override
+
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
+		TipoDocumentoForm tdForm = (TipoDocumentoForm) form;
 		ServTipoDocumento servTipoDocumento = new ServTipoDocumento();
-		PersonaForm pForm = (PersonaForm) form;
 		try {
-			ServPersona servPersona = new ServPersona();
-			if (pForm.getIdPersona() != null) {
-				servPersona.update(pForm);
+			if (tdForm.getIdTipodocumento() != null && tdForm.getIdTipodocumento() > 0) {
+				servTipoDocumento.update(tdForm);
 			} else {
-				servPersona.create(pForm);
+				servTipoDocumento.create(tdForm);
 			}
+
+			request.setAttribute("tiposDocumentos", servTipoDocumento.findAll());
 			return mapping.findForward("success");
 		} catch (Exception e) {
 			e.printStackTrace();
-			pForm.setListadoDocumentos(servTipoDocumento.findAll());
-			request.setAttribute("personaForm", pForm);
+			tdForm.setListadoDocumentos(servTipoDocumento.findAll());
+			request.setAttribute("tipoDocumentoForm", tdForm);
 			return mapping.findForward("failure");
 		}
+
 	}
+
 }
